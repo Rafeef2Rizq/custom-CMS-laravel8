@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\DashboardController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.dashboard');
+
+    return "home page";
 });
+
+Auth::routes();
+
+Route::get('auth/dashboard',[DashboardController::class,'dashboad'])->name('auth.dashboard')
+->middleware('auth');

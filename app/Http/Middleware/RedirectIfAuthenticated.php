@@ -18,11 +18,12 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        $redirectUrl='auth/dashboard';
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect($redirectUrl);
             }
         }
 
