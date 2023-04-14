@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\auth\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Auth::routes();
 
 Route::get('auth/dashboard',[DashboardController::class,'dashboad'])->name('auth.dashboard')
 ->middleware('auth');
+Route::resource('auth/posts',PostController::class);
