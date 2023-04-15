@@ -14,6 +14,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="parsley.min.js"></script>
 @endsection
 @section('content')
     <div class="main-panel">
@@ -41,42 +43,44 @@
                         @endif
                         <h4 class="card-title">Create post</h4>
                         <p class="card-description"> Fill data </p>
-                        <form action="{{ route('posts.store') }}" method="post" class="forms-sample">
+                        <form action="{{ route('posts.store') }}" method="post" class="forms-sample"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Title</label>
-                                <input type="text" name="title" class="form-control" placeholder="Title">
+                                <input type="text" name="title" class="form-control" placeholder="Title"
+                                    value="{{ old('title') }}" required>
                             </div>
 
                             <div class="form-group">
 
                                 <label>Description</label>
-                                <textarea name="description" id="summernote" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="description" id="summernote" class="form-control" cols="30" rows="10" >{{ old('description') }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Categories</label>
-                                <select name="category_id" class="form-control">
-                                    <option disabled selected>Choose option</option>
+                                <select name="category_id" class="form-control" required id="select">
                                     @if (count($categories) > 0)
                                         @foreach ($categories as $category)
-                                            <option id="{{ $category->id }}">{!! $category->name !!}</option>
+                                            <option @if (old('category_id') == $category->id) selected @endif
+                                                value="{{ $category->id }}">{!! $category->name !!}</option>
                                         @endforeach
                                     @endif
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Published</label>
-                                <select name="is_publish" class="form-control" id="">
-                                    <option disabled selected>Choose option</option>
-                                    <option value="1">Publish</option>
-                                    <option value="0">Draft</option>
+                                <select name="is_publish" class="form-control" required>
+                                    <option @if (old('is_publish') == 1) selected @endif value="1">Publish
+                                    </option>
+                                    <option @if (old('is_publish') == 0) selected @endif value="0">Draft</option>
 
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>File upload</label>
-                                <input type="file" class="form-control" name="image">
+                                <input type="file" class="form-control" name="file" required>
                             </div>
                     </div>
 
@@ -89,7 +93,9 @@
         </div>
 
     @endsection
+    <script>    $('#select').parsley(options);</script>
     @section('script')
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -100,5 +106,7 @@
                 tabsize: 2,
                 height: 100
             });
+
+
         </script>
     @endsection

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Gallary;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -37,10 +39,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=>['required','min:2','max:20']
-    ]);
-    return $request->all();
+      $request->validate(Post::roleValidation());
+      if($request->has('file')){
+  $file=$request->file;
+  $fileName=time(). $file->getClientOriginalName();
+  $imagePath=public_path('images/posts');
+  $file->move($imagePath,$fileName);
+  $gallary=Gallary::create([
+    'image'=>$fileName
+]);
+      }
+     Post::create([
+        'title'=>$request->input('title'),
+        'description'=>$request->input('description'),
+        'category_id'=>$request->input('category_id'),
+        'is_publish'=>$request->input('is_publish'),
+        'gallary_id'=>$gallary->id,
+
+     ]);
+     $request->session()->flash('alert-success','Post created successfuly');
+     return redirect()->route('posts.index');
     }
 
     /**
@@ -87,4 +105,5 @@ class PostController extends Controller
     {
         //
     }
+
 }
