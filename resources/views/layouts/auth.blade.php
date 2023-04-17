@@ -18,12 +18,11 @@
     <link rel="stylesheet" href="{{asset('assets/auth/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/auth/images/favicon.ico')}}" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('styles')
   </head>
   <body>
-    <div class="container-scroller">
 
-      </div>
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -315,6 +314,12 @@
     alert('Log out now');
    });
   });
+</script>
+<script>
+    @if (Session::has('alert-success'))
+    swal("Good job!","{{Session::get('alert-success')}}" , "success");
+
+    @endif
 </script>
 </body>
 </html>

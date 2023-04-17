@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Gallary;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -17,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        $post=Post::with(['gallary','category'])->get();
+ return view('auth.posts.index',['post'=>$post]);
     }
 
     /**
@@ -39,7 +41,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate(Post::roleValidation());
+      try {
+        DB::beginTransaction();
+        $request->validate(Post::roleValidation());
       if($request->has('file')){
   $file=$request->file;
   $fileName=time(). $file->getClientOriginalName();
@@ -57,7 +61,11 @@ class PostController extends Controller
         'gallary_id'=>$gallary->id,
 
      ]);
-     $request->session()->flash('alert-success','Post created successfuly');
+     DB::commit();
+      } catch (\Exception $ex) {
+       DB::rollBack();
+      }
+      $request->session()->flash('alert-success','Post added successfully');
      return redirect()->route('posts.index');
     }
 

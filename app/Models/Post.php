@@ -18,4 +18,11 @@ class Post extends Model
             'file'=>['required','image' ,'mimes:jpg,bmp,png,jepg' ,'dimensions:min_width=100,min_height=200'],
     ];
     }
+
+    public function gallary(){
+        return $this->belongsTo(Gallary::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }

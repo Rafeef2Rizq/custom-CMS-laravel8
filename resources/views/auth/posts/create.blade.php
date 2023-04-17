@@ -19,6 +19,7 @@
 @endsection
 @section('content')
     <div class="main-panel">
+
         <div class="content-wrapper">
             <div class="page-header">
                 <h3 class="page-title">Posts</h3>
