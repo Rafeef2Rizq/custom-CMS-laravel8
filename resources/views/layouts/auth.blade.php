@@ -319,6 +319,10 @@
     @if (Session::has('alert-success'))
     swal("Good job!","{{Session::get('alert-success')}}" , "success");
 
+
+    @elseif (Session::has('alert-danger'))
+    swal("Good job!","{{Session::get('alert-danger')}}" , "danger");
+
     @endif
 </script>
 </body>

@@ -8,6 +8,7 @@ use App\Models\Gallary;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -111,7 +112,16 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $post=Post::findOrFail($id);
+
+
+
+$dest='images/posts/'.$post->gallary->image;
+if(File::exists($dest)){
+    File::delete($dest);
+}
+$post->delete();
+return redirect()->route('posts.index')->with('status','Post deleted successfully');
     }
 
 }
