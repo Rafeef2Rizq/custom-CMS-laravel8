@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
+
 class PostController extends Controller
 {
     /**
@@ -20,6 +21,8 @@ class PostController extends Controller
     public function index()
     {
         $post=Post::with(['gallary','category'])->get();
+//  $post = Post::with(['gallary','category'])->latest()
+//->orderBy('title', 'ASC')->paginate(4);
  return view('auth.posts.index',['post'=>$post]);
     }
 

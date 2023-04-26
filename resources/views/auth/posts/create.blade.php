@@ -25,7 +25,7 @@
                 <h3 class="page-title">Posts</h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Posts</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('posts.index')}}">Posts</a></li>
                         <li class="breadcrumb-item active" aria-current="page">create post</li>
                     </ol>
                 </nav>
