@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\auth\PostController;
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-    return "home page";
-});
-
+Route::get('/',[WebsiteController::class,'home'] )->name('home');
+Route::get('/posts/{post}',[WebsiteController::class,'show'] )->name('website.posts.show');
 Auth::routes();
 
 Route::get('auth/dashboard',[DashboardController::class,'dashboad'])->name('auth.dashboard')

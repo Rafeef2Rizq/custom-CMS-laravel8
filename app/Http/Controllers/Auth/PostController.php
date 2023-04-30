@@ -45,8 +45,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      try {
-        DB::beginTransaction();
+    //   try {
+        // DB::beginTransaction();
         $request->validate(Post::roleValidation());
       if($request->has('file')){
   $file=$request->file;
@@ -65,10 +65,10 @@ class PostController extends Controller
         'gallary_id'=>$gallary->id,
 
      ]);
-     DB::commit();
-      } catch (\Exception $ex) {
-       DB::rollBack();
-      }
+    //  DB::commit();
+    //   } catch (\Exception $ex) {
+    //    DB::rollBack();
+    //   }
       $request->session()->flash('alert-success','Post added successfully');
      return redirect()->route('posts.index');
     }

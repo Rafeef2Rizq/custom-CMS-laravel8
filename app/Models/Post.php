@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class Post extends Model
 {
     use HasFactory;
+    public const Published=1;
+    public const Draft=0;
    protected $fillable=['category_id','gallary_id','title','description','is_publish'];
     public static function  roleValidation( ){
      return [
