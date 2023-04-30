@@ -51,7 +51,7 @@
                 @foreach ($post as $list )
                 <tr>
                     <td class="py-1">
-                      <img src="{{$list->gallary->image_url}}" style="width:60px"alt="image" />
+                      <img src="{{$list->gallary->image_url}}" style="width:70px; height:60px"alt="image" />
                     </td>
                     <td> {{$list->title}}</td>
                     <td>
@@ -62,8 +62,8 @@
                   </td>
                     <td> {{$list->is_publish == 1 ?'Published':'Drafe'}}</td>
                     {{-- complete it later --}}
-                    <td>
-                    <a href="{{route('posts.show',$list->id)}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
+                    <td class="btn-group btn-group-toggle">
+                    <a href="{{route('website.posts.show',$list->id)}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
                     <a href="" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
 
                  <form action="{{route('posts.destroy',$list->id)}} " method="post">

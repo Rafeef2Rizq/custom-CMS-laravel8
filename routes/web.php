@@ -23,4 +23,4 @@ Auth::routes();
 
 Route::get('auth/dashboard',[DashboardController::class,'dashboad'])->name('auth.dashboard')
 ->middleware('auth');
-Route::resource('auth/posts',PostController::class);
+Route::resource('auth/posts',PostController::class)->middleware('auth');
