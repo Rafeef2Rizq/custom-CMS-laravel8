@@ -59,36 +59,9 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="index.html">Home</a></li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolio <span class="ion-ios-arrow-down"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio.html">Portfolio Filter</a></li>
-										<li><a href="portfolio-single.html">Portfolio Single</a></li>
-									</ul>
-								</li>
-								<li><a href="service.html">Service</a></li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="ion-ios-arrow-down"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="blog-grid.html">Blog Grid</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-										<li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-										<li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-										<li><a href="blog-full-width.html">Blog Full Width</a></li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="ion-ios-arrow-down"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="about.html">About Us</a></li>
-										<li><a href="coming-soon.html">Coming Soon</a></li>
-										<li><a href="404.html">404 Page</a></li>
-										<li><a href="faq.html">FAQ</a></li>
-										<li><a href="pricing.html">Pricing Table</a></li>
-									</ul>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="{{route('home')}}">Home</a></li>
+
+								<li><a href="{{route('contact')}}">Contact</a></li>
 							</ul>
 							</div><!-- /.navbar-collapse -->
 							</div><!-- /.container-fluid -->
@@ -106,16 +79,14 @@
 			<div class="col-md-12">
 				<div class="footer-manu">
 					<ul>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Contact us</a></li>
-						<li><a href="#">How it works</a></li>
-						<li><a href="#">Support</a></li>
-						<li><a href="#">Terms</a></li>
+
+						<li><a href="{{route('home')}}">Home</a></li>
+
+						<li><a href="{{route('contact')}}">Contact us</a></li>
 					</ul>
 				</div>
 				<p class="copyright">Copyright 2018 &copy; Design & Developed by <a href="http://www.themefisher.com">themefisher.com</a>. All rights reserved.
-					<br>
-					Get More <a href="https://themefisher.com/free-bootstrap-templates/" target="_blank">Free Bootstrap Templates</a>
+
 				</p>
 			</div>
 		</div>

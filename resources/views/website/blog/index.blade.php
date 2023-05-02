@@ -8,7 +8,6 @@
         <div class="col-md-12">
           <div class="block">
             <h1>Blog</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, quibusdam.</p>
           </div>
         </div>
       </div>
@@ -19,7 +18,8 @@
       <div class="container">
           <div class="row">
               <div class="col-md-8">
-        @foreach ($posts as $post)
+                @if (count($posts) >0)
+                  @foreach ($posts as $post)
         <div class="post">
             <div class="post-media post-thumb">
                 <a href="{{route('website.posts.show',$post->id)}}">
@@ -47,6 +47,12 @@
 
    </div>
         @endforeach
+                @else
+                  <h2 class="text-center text-danger mt-5">
+                    No posts founded
+                  </h2>
+                @endif
+
 
   {{-- <div class="text-center">
       <ul class="pagination post-pagination">
@@ -81,17 +87,17 @@
           </a>
           <div class="media-body">
               <h4 class="media-heading"><a href="{{route('website.posts.show',$post->id)}}">{{$latest->title}}</a></h4>
-              <p>{!! Str::limit($latest->description ,25)!!}</p>
+              <p>{!! Str::limit($latest->description ,25) !!}</p>
           </div>
-      </div>
-        @endforeach
 
+        @endforeach
+    </div>
         @else
         <h4 class="text-center text-danger">No posts added yet</h4>
         @endif
+    </div>
 
 
-      </div>
       <!-- End Latest Posts -->
 
       <!-- Widget Category -->

@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('contact-us', 'website.contact')->name('contact');
+Route::controller(WebsiteController::class)->group(function(){
+    Route::get('/home','home' )->name('home');
+    Route::get('/posts/{post}','show' )->name('website.posts.show');
+});
 
-Route::get('/',[WebsiteController::class,'home'] )->name('home');
-Route::get('/posts/{post}',[WebsiteController::class,'show'] )->name('website.posts.show');
 Auth::routes();
+Route::prefix('auth')->middleware('auth')->group(function(){
+    Route::get('dashboard',[DashboardController::class,'dashboad'])->name('auth.dashboard');
+    Route::resource('posts',PostController::class);
+});
 
-Route::get('auth/dashboard',[DashboardController::class,'dashboad'])->name('auth.dashboard')
-->middleware('auth');
-Route::resource('auth/posts',PostController::class)->middleware('auth');

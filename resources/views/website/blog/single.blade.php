@@ -7,7 +7,6 @@
         <div class="col-md-12">
           <div class="block">
             <h1>Blog</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, quibusdam.</p>
           </div>
         </div>
       </div>
